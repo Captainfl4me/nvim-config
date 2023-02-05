@@ -24,6 +24,8 @@ Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 Plug 'https://github.com/tpope/vim-fugitive' "Git plugin
 
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'https://github.com/neovim/nvim-lspconfig'
+Plug 'williamboman/mason.nvim'
 let g:coq_settings = { 'auto_start': 'shut-up' } " Autostart coq
 
 :set encoding=UTF-8
@@ -49,3 +51,7 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
+"Lua config
+lua << EOF
+require("mason").setup()
+EOF
