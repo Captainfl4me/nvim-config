@@ -20,3 +20,4 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 ```
 
 Open vim with the nvim command and run :PlugInstall and :CHADdeps
+Doawnload [ctags](https://ctags.sourceforge.net/) and add it to Path.
