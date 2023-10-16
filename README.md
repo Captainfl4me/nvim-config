@@ -8,16 +8,23 @@ winget install -e --id Neovim.Neovim
 ```
 
 ## Configure vim
-Download and install the [Monoki nerd font](https://www.nerdfonts.com/font-downloads)
-Install Python and add it to Path. (Not from Microsoft Store !)
-In windows Terminal change font in settings.
-Then copy the init.vim file in ~/AppData/local/nvim/
+Now that NeoVim is installed now you will need to download the dependencies:
 
-!! Before updating Plugin dependencies we need to install the [Plugin Manager](https://github.com/junegunn/vim-plug)
+- Download [ctags](https://ctags.sourceforge.net/) and add it to Path.
+- Download and install the [Monoki nerd font](https://www.nerdfonts.com/font-downloads) and change your terminal font with it.
+- Install [Python](https://www.python.org/) and add it to Path. (Not from Microsoft Store !)
+
+Then copy go to ~/AppData/local/ and run the following commands:
+
+```ps1
+    git clone git@github.com:Captainfl4me/nvim-config.git
+    mv nvim-config nvim
+```
+
+Before running NeoVim we need to install the [Plugin Manager](https://github.com/junegunn/vim-plug)
 ```ps1
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
 ```
 
-Open vim with the nvim command and run :PlugInstall and :CHADdeps
-Doawnload [ctags](https://ctags.sourceforge.net/) and add it to Path.
+Finally, open NeoVim with the nvim command and run :PlugInstall and :CHADdeps
