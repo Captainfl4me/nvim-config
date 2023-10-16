@@ -1,13 +1,17 @@
 # nvim-config
+
 NeoVIM configuration
 
 ## Install neovim
+
 For windows you can use winget to download to latest packaged version.
+
 ```ps
 winget install -e --id Neovim.Neovim
 ```
 
 ## Configure vim
+
 Now that NeoVim is installed now you will need to download the dependencies:
 
 - Download [ctags](https://ctags.sourceforge.net/) and add it to Path.
@@ -22,6 +26,7 @@ Then copy go to ~/AppData/local/ and run the following commands:
 ```
 
 Before running NeoVim we need to install the [Plugin Manager](https://github.com/junegunn/vim-plug)
+
 ```ps1
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
