@@ -38,7 +38,8 @@ Install python support for nvim with
 pip3 install --user --upgrade neovim
 ```
 
-Finally, open NeoVim with the nvim command and run :PlugInstall and :CHADdeps
+Open NeoVim with the nvim command and run :PlugInstall and :CHADdeps
+Run ```:Copilot setup``` to connect to Github Copilot
 
 # Known problems
 
