@@ -6,7 +6,7 @@
 :set smarttab
 :set softtabstop=4
 :set mouse=a
-set guifont="Monoki Nerd Font"
+::set guifont="Monoki Nerd Font"
 
 call plug#begin()
 
@@ -22,10 +22,23 @@ Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple c
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 
 Plug 'https://github.com/tpope/vim-fugitive' "Git plugin
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' } " Markdown preview
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " File search popup
+Plug 'mhinz/vim-startify' " Dashboard
 
 :set encoding=UTF-8
 
 call plug#end()
+
+let g:dashboard_custom_header = [
+\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
+\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
+\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
+\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
+\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
+\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
+\]
+let g:startify_custom_header = 'startify#pad(startify#fortune#boxed() + g:dashboard_custom_header)'
 
 nnoremap <C-t> :CHADopen <CR>
 
@@ -43,3 +56,7 @@ endif
 
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
+
+let g:Lf_WindowPosition = 'popup'
+
+

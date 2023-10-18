@@ -21,8 +21,8 @@ Now that NeoVim is installed now you will need to download the dependencies:
 Then copy go to ~/AppData/local/ and run the following commands:
 
 ```ps1
-    git clone git@github.com:Captainfl4me/nvim-config.git
-    mv nvim-config nvim
+git clone git@github.com:Captainfl4me/nvim-config.git
+mv nvim-config nvim
 ```
 
 Before running NeoVim we need to install the [Plugin Manager](https://github.com/junegunn/vim-plug)
@@ -32,4 +32,15 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
 ```
 
+Install python support for nvim with
+
+```ps1
+pip3 install --user --upgrade neovim
+```
+
 Finally, open NeoVim with the nvim command and run :PlugInstall and :CHADdeps
+
+# Known problems
+
+If MarkdownPreview is not working! Go to a Markdown file and manually run ```:call mkdp#util#install()```
+
