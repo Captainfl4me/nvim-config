@@ -17,6 +17,7 @@ Now that NeoVim is installed now you will need to download the dependencies:
 - Download [ctags](https://ctags.sourceforge.net/) and add it to Path.
 - Download and install the [Monoki nerd font](https://www.nerdfonts.com/font-downloads) and change your terminal font with it.
 - Install [Python](https://www.python.org/) and add it to Path. (Not from Microsoft Store !)
+- Install VS [build tools](https://visualstudio.microsoft.com/fr/visual-cpp-build-tools/)
 
 Then copy go to ~/AppData/local/ and run the following commands:
 
