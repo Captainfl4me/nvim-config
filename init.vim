@@ -7,6 +7,7 @@
 :set softtabstop=4
 :set mouse=a
 :set guifont="Monoki Nerd Font"
+:set clipboard+=unnamedplus
 
 call plug#begin()
 
@@ -28,6 +29,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " File search popup
 Plug 'mhinz/vim-startify' " Dashboard
 Plug 'https://github.com/github/copilot.vim' " Github Copilot
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rust-lang/rust.vim'
 
 :set encoding=UTF-8
 
@@ -62,3 +66,19 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 let g:Lf_WindowPosition = 'popup'
 
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
