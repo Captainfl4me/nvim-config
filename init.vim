@@ -47,6 +47,10 @@ let g:dashboard_custom_header = [
 \ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
 \]
 let g:startify_custom_header = 'startify#pad(startify#fortune#boxed() + g:dashboard_custom_header)'
+let g:startify_list_order = ['bookmarks', 'files']
+let g:startify_bookmarks = [
+\ { 'c': '~/Appdata/Local/nvim/init.vim' },
+\ ]
 
 nnoremap <C-t> :CHADopen <CR>
 
@@ -83,3 +87,4 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-rust-analyzer']

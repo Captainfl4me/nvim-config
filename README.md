@@ -44,5 +44,6 @@ Run ```:Copilot setup``` to connect to Github Copilot
 
 # Known problems
 
-If MarkdownPreview is not working! Go to a Markdown file and manually run ```:call mkdp#util#install()```
+If MarkdownPreview is not working! Go to a Markdown file and manually run ```:call mkdp#util#install()```.
+For coc-rust-analyzer to work it is important to have install rust-analyzer with ```rustup component add rust-analyzer```.
 
