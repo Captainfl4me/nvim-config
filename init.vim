@@ -7,6 +7,7 @@
 :set softtabstop=4
 :set mouse=a
 :set guifont="Monoki Nerd Font"
+:set updatetime=300
 :set clipboard+=unnamedplus
 
 call plug#begin()
