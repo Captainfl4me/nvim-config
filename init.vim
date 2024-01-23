@@ -19,9 +19,8 @@ Plug 'https://github.com/ap/vim-css-color' " CSS Color
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
-Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
-Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
+Plug 'numToStr/Comment.nvim'
 
 Plug 'https://github.com/tpope/vim-fugitive' "Git plugin
 Plug 'https://github.com/airblade/vim-gitgutter' " Git diff highlighting
@@ -88,3 +87,6 @@ function! s:show_documentation()
   endif
 endfunction
 let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-rust-analyzer']
+
+" Init comment plugin
+lua require('Comment').setup()
