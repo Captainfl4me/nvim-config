@@ -70,11 +70,24 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 let g:Lf_WindowPosition = 'popup'
 
+"" COC CONFIGURATION
+" Show all diagnostics
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
