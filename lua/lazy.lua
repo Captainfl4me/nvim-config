@@ -17,6 +17,12 @@ local plugins = {
 		config = function()
 			require("config.heirline")
 		end
+	},
+	{
+		'lewis6991/gitsigns.nvim',
+		config = function()
+			require('gitsigns').setup()
+		end
 	}
 }
 
