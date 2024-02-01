@@ -4,7 +4,7 @@ local M = {
 		"nvim-tree/nvim-web-devicons",
 		"lewis6991/gitsigns.nvim"
 	},
-	lazy = false,
+	event = 'UIEnter',
 	config = function()
 		local conditions = require("heirline.conditions")
 		local utils = require("heirline.utils")
