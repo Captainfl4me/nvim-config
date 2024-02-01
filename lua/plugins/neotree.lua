@@ -7,7 +7,7 @@ local M = {
 	  -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
 	keys = {
-		{'<C-t>', '<cmd>Neotree<cr>', desc = "Focus Neotree"}
+		{'<leader>t', '<cmd>Neotree<cr>', desc = "Focus Neotree"}
 	}
 }
 
