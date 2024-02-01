@@ -1,6 +1,9 @@
 local M = {
 	'rebelot/heirline.nvim',
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = { 
+		"nvim-tree/nvim-web-devicons",
+		"lewis6991/gitsigns.nvim"
+	},
 	lazy = false,
 	config = function()
 		local conditions = require("heirline.conditions")
