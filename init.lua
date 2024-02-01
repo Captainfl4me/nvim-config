@@ -27,7 +27,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Get the directory of the current script file
 local script_dir = debug.getinfo(1, 'S').source:match[[^@?(.*[\/])[^\/]-$]]
-
 -- Add the directory to the package.path
 package.path = package.path .. ';' .. script_dir .. '?.lua'
 
