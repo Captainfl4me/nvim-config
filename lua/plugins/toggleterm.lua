@@ -1,7 +1,7 @@
 local M = {
-	'akinsho/toggleterm.nvim', 
-	version = "*", 
-	cmd = { 
+	'akinsho/toggleterm.nvim',
+	version = "*",
+	cmd = {
 		"ToggleTerm"
 	},
 	keys = {

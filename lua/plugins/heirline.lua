@@ -1,6 +1,6 @@
 local M = {
 	'rebelot/heirline.nvim',
-	dependencies = { 
+	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 		"lewis6991/gitsigns.nvim",
 		"nvim-lua/lsp-status.nvim",
@@ -32,7 +32,7 @@ local M = {
 			}
 		end
 
-		require("heirline").load_colors(setup_colors)
+		require("heirline").load_colors(setup_colors())
 		vim.api.nvim_create_augroup("Heirline", { clear = true })
 		vim.api.nvim_create_autocmd("ColorScheme", {
 			callback = function()
@@ -130,7 +130,7 @@ local M = {
 				end),
 			},
 		}
-		ViMode = utils.surround({ "█", "" }, "bright_bg", { ViMode, Snippets })
+		ViMode = utils.surround({ "█", "" }, "bright_bg", ViMode)
 
 		-- FileName and friends
 		local FileNameBlock = {
@@ -209,18 +209,6 @@ local M = {
 			end,
 			hl = { fg = utils.get_highlight("Type").fg, bold = true },
 		}
-		local FileEncoding = {
-			provider = function()
-				local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc -- :h 'enc'
-				return enc ~= 'utf-8' and enc:upper()
-			end
-		}
-		local FileFormat = {
-			provider = function()
-				local fmt = vim.bo.fileformat
-				return fmt ~= 'unix' and fmt:upper()
-			end
-		}
 
 		local Git = {
 			condition = conditions.is_git_repo,
@@ -275,6 +263,60 @@ local M = {
 			},
 		}
 
+		print(vim.inspect(require'nvim-web-devicons'.get_icons()))
+		local Diagnostics = {
+
+			condition = conditions.has_diagnostics,
+
+			static = {
+				error_icon = " ",
+				warn_icon = " ",
+				info_icon = " ",
+				hint_icon = " ",
+			},
+
+			init = function(self)
+				self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+				self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+				self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+				self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+			end,
+
+			update = { "DiagnosticChanged", "BufEnter" },
+
+			{
+				provider = "![",
+			},
+			{
+				provider = function(self)
+					-- 0 is just another output, we can decide to print it or not!
+					return self.errors > 0 and (self.error_icon .. self.errors .. " ")
+				end,
+				hl = { fg = "diag_error" },
+			},
+			{
+				provider = function(self)
+					return self.warnings > 0 and (self.warn_icon .. self.warnings .. " ")
+				end,
+				hl = { fg = "diag_warn" },
+			},
+			{
+				provider = function(self)
+					return self.info > 0 and (self.info_icon .. self.info .. " ")
+				end,
+				hl = { fg = "diag_info" },
+			},
+			{
+				provider = function(self)
+					return self.hints > 0 and (self.hint_icon .. self.hints)
+				end,
+				hl = { fg = "diag_hint" },
+			},
+			{
+				provider = "]",
+			},
+		}
+
 		local LSPActive = {
 			condition = conditions.lsp_attached,
 			update = {'LspAttach', 'LspDetach'},
@@ -285,7 +327,7 @@ local M = {
 			-- Or complicate things a bit and get the servers names
 			provider  = function()
 				local names = {}
-				for i, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+				for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
 					table.insert(names, server.name)
 				end
 				return " [" .. table.concat(names, " ") .. "]"
@@ -293,12 +335,20 @@ local M = {
 			hl = { fg = "green", bold = true },
 		}
 		local LSPMessages = {
-			provider = function()
-				return require("lsp-status").status()
-			end,
+			provider = require("lsp-status").status(),
 			hl = { fg = "gray" },
 		}
 
+
+		local TerminalName = {
+			-- we could add a condition to check that buftype == 'terminal'
+			-- or we could do that later (see #conditional-statuslines below)
+			provider = function()
+				local tname, _ = vim.api.nvim_buf_get_name(0):gsub(".*:", "")
+				return " " .. tname
+			end,
+			hl = { fg = "blue", bold = true },
+		}
 
 		-- Cursor position: Ruler and ScrollBar
 		-- We're getting minimalists here!
@@ -315,7 +365,7 @@ local M = {
 		local Space = { provider = " " }
 
 		local DefaultStatusline = {
-			ViMode, Space, FileNameBlock, Space, Git, Align,
+			ViMode, Space, FileNameBlock, Space, Git, Space, Diagnostics, Align,
 			LSPActive, Space, LSPMessages, Space, FileType, Space, Ruler
 		}
 		local InactiveStatusline = {

@@ -19,7 +19,7 @@ local M = {
 				palette = {},
 				theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
 			},
-			overrides = function(colors) -- add/modify highlights
+			overrides = function(_) -- add/modify highlights
 				return {}
 			end,
 			background = {               -- map the value of 'background' option to a theme
