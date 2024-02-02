@@ -8,7 +8,7 @@ local M = {
 	},
 	cmd = "Neotree",
 	keys = {
-		{'<leader>t', '<cmd>Neotree<cr>', desc = "Focus Neotree"}
+		{'<leader>e', '<cmd>Neotree<cr>', desc = "Focus Neotree"}
 	}
 }
 
