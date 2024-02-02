@@ -3,10 +3,21 @@ local M = {
 	-- enable = false,
 	lazy = false,
 	priority = 1000,
-	opts = {},
-	config = function()
+	opts = function()
+		return {
+			style = "moon",
+			transparent = false,
+			styles = {},
+		}
+	end,
+
+	config = function(_, opts)
+		local tokyonight = require("tokyonight")
+		tokyonight.setup(opts)
+		tokyonight.load()
+
 		vim.cmd("colorscheme tokyonight")
-	end
+	end,
 }
 
 return M
