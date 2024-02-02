@@ -2,7 +2,8 @@ local M = {
 	'rebelot/heirline.nvim',
 	dependencies = { 
 		"nvim-tree/nvim-web-devicons",
-		"lewis6991/gitsigns.nvim"
+		"lewis6991/gitsigns.nvim",
+		"nvim-lua/lsp-status.nvim",
 	},
 	event = 'UIEnter',
 	config = function()
@@ -274,6 +275,30 @@ local M = {
 			},
 		}
 
+		local LSPActive = {
+			condition = conditions.lsp_attached,
+			update = {'LspAttach', 'LspDetach'},
+
+			-- You can keep it simple,
+			-- provider = " [LSP]",
+
+			-- Or complicate things a bit and get the servers names
+			provider  = function()
+				local names = {}
+				for i, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+					table.insert(names, server.name)
+				end
+				return " [" .. table.concat(names, " ") .. "]"
+			end,
+			hl = { fg = "green", bold = true },
+		}
+		local LSPMessages = {
+			provider = function()
+				return require("lsp-status").status()
+			end,
+			hl = { fg = "gray" },
+		}
+
 
 		-- Cursor position: Ruler and ScrollBar
 		-- We're getting minimalists here!
@@ -291,7 +316,7 @@ local M = {
 
 		local DefaultStatusline = {
 			ViMode, Space, FileNameBlock, Space, Git, Align,
-			FileType, Space, Ruler
+			LSPActive, Space, LSPMessages, Space, FileType, Space, Ruler
 		}
 		local InactiveStatusline = {
 			condition = conditions.is_not_active,
