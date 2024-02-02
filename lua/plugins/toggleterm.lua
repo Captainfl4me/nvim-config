@@ -7,7 +7,7 @@ local M = {
 	keys = {
 		{'<leader>t', '<Cmd>exe v:count1 . \"ToggleTerm\"<CR>', desc = "Open specific terminal" },
 	},
-	opts = {--[[ things you want to change go here]]},
+	opts = {},
 }
 
 return M
