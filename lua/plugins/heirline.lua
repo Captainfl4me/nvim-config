@@ -263,7 +263,6 @@ local M = {
 			},
 		}
 
-		print(vim.inspect(require'nvim-web-devicons'.get_icons()))
 		local Diagnostics = {
 
 			condition = conditions.has_diagnostics,
