@@ -1,7 +1,19 @@
 local M = {
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "nvim-lua/lsp-status.nvim" },
+		dependencies = {
+			"nvim-lua/lsp-status.nvim",
+			{
+				"tamago324/nlsp-settings.nvim",
+				opts = {
+					config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
+					local_settings_dir = ".nvim/nlsp-settings",
+					local_settings_root_markers_fallback = { '.git' },
+					append_default_schemas = true,
+					loader = 'json'
+				}
+			},
+		},
 	},
 	{
 		"williamboman/mason.nvim",
@@ -13,7 +25,7 @@ local M = {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		lazy = false,
+		event = 'UIEnter',
 		dependencies = {
 			"williamboman/mason.nvim",
 			"neovim/nvim-lspconfig",
