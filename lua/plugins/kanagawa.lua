@@ -1,8 +1,8 @@
 local M = {
 	'rebelot/kanagawa.nvim',
-	enable = false,
-	-- lazy = false,
-	-- priority = 1000,
+	enable = ColorScheme == "kanagawa",
+	lazy = false,
+	priority = 1000,
 	config = function()
 		require('kanagawa').setup({
 			compile = true,             -- enable compiling the colorscheme
@@ -29,7 +29,9 @@ local M = {
 		})
 
 		-- Loading colorscheme
-		vim.cmd("colorscheme kanagawa")
+		if ColorScheme == "kanagawa" then
+			vim.cmd("colorscheme kanagawa")
+		end
 	end
 }
 

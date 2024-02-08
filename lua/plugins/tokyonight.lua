@@ -1,6 +1,6 @@
 local M = {
 	"folke/tokyonight.nvim",
-	-- enable = false,
+	enable = ColorScheme == "tokyonight",
 	lazy = false,
 	priority = 1000,
 	opts = function()
@@ -16,7 +16,9 @@ local M = {
 		tokyonight.setup(opts)
 		tokyonight.load()
 
-		vim.cmd("colorscheme tokyonight")
+		if ColorScheme == "tokyonight" then
+			vim.cmd("colorscheme tokyonight")
+		end
 	end,
 }
 

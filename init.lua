@@ -31,5 +31,7 @@ local script_dir = debug.getinfo(1, 'S').source:match[[^@?(.*[\/])[^\/]-$]]
 -- Add the directory to the package.path
 package.path = package.path .. ';' .. script_dir .. '?.lua'
 
+ColorScheme = "tokyonight"
+
 require("lua.keymaps")
 require("lua.lazy")
