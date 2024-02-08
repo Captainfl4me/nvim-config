@@ -1,12 +1,12 @@
 local M = {
 	"folke/tokyonight.nvim",
 	enable = ColorScheme == "tokyonight",
-	lazy = false,
+	lazy = not ColorScheme == "tokyonight",
 	priority = 1000,
 	opts = function()
 		return {
 			style = "moon",
-			transparent = false,
+			transparent = IsTransparent,
 			styles = {},
 		}
 	end,

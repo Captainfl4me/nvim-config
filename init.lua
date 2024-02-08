@@ -32,6 +32,7 @@ local script_dir = debug.getinfo(1, 'S').source:match[[^@?(.*[\/])[^\/]-$]]
 package.path = package.path .. ';' .. script_dir .. '?.lua'
 
 ColorScheme = "tokyonight"
+IsTransparent = false
 
 require("lua.keymaps")
 require("lua.lazy")
