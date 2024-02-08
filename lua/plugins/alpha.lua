@@ -21,12 +21,11 @@ local M = {
 
 		dashboard.section.buttons.val = {
 			dashboard.button("e", "  New file", "<cmd>ene <CR>"),
-			-- dashboard.button("SPC f f", "󰈞  Find file"),
-			-- dashboard.button("SPC f h", "󰊄  Recently opened files"),
-			-- dashboard.button("SPC f r", "  Frecency/MRU"),
-			-- dashboard.button("SPC f g", "󰈬  Find word"),
-			-- dashboard.button("SPC f m", "  Jump to bookmarks"),
-			-- dashboard.button("SPC s l", "  Open last session"),
+			dashboard.button( "f", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
+			dashboard.button("r", "  Recent files", "<cmd>Telescope oldfiles<CR>"),
+			dashboard.button( "c", "  Neovim Config", "<cmd>execute 'cd' stdpath('config')<CR> | <cmd>e $MYVIMRC<CR>"),
+			dashboard.button( "u", "  Update Plugins", "<cmd>Lazy update<CR>"),
+			dashboard.button( "q", "󰛂  Quit NVIM", ":qa<CR>"),
 		}
 		dashboard.config.layout = {
 			{ type = "padding", val = vim.fn.max { 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) } },
