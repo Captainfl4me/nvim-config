@@ -6,7 +6,21 @@ local M = {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
-			"L3MON4D3/LuaSnip"
+			"L3MON4D3/LuaSnip",
+			{
+				"zbirenbaum/copilot-cmp",
+				dependencies = {
+					"zbirenbaum/copilot.lua",
+					cmd = "Copilot",
+					event = "InsertEnter",
+					opts = {
+						suggestion = { enabled = false },
+						panel = { enabled = false },
+					},
+				},
+				opts = {},
+			},
+
 		},
 		event = "InsertEnter",
 		opts = function()
@@ -51,10 +65,11 @@ local M = {
 					end, { 'i', 's' }),
 				}),
 				sources = cmp.config.sources {
-				  { name = "nvim_lsp", priority = 1000 },
-				  { name = "luasnip", priority = 750 },
-				  { name = "buffer", priority = 500 },
-				  { name = "path", priority = 250 },
+					{ name = "nvim_lsp", priority = 1000 },
+					{ name = "luasnip", priority = 750 },
+					{ name = "buffer", priority = 500 },
+					{ name = "path", priority = 250 },
+					{ name = "copilot", priority = 100 },
 				},
 			}
 		end,

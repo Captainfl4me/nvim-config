@@ -214,7 +214,7 @@ local M = {
 			condition = conditions.is_git_repo,
 
 			init = function(self)
-				self.status_dict = vim.b.gitsigns_status_dict
+				self.status_dict =  vim.b.gitsigns_status_dict
 				self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0
 			end,
 
@@ -316,6 +316,64 @@ local M = {
 			},
 		}
 
+		local Copilot = {
+			condition = conditions.is_active(), -- always active
+			provider = function()
+				local status = {
+					icons = {
+						enabled = " ",
+						sleep = " ",
+						disabled = " ",
+						warning = " ",
+						unknown = " "
+					},
+				}
+				local copilot_loaded = package.loaded["copilot"] ~= nil
+				if not copilot_loaded then
+					return status.icons.unknown
+				end
+
+				local copilot = require("copilot.client")
+				local api = require("copilot.api")
+				if not copilot.buf_is_attached(vim.api.nvim_get_current_buf()) or copilot.is_disabled() then
+					return status.icons.disabled
+				elseif api.status.data.status == "Warning" then
+					return status.icons.warning
+				elseif vim.b.copilot_suggestion_auto_trigger then
+					return status.icons.sleep
+				else
+					return status.icons.enabled
+				end
+			end,
+			hl = function()
+				local status = {
+					hl = {
+						enabled = "diag_hint",
+						sleep = "diag_info",
+						disabled = "cyan",
+						warning = "diag_warn",
+						unknown = "diag_error"
+					}
+				}
+				local copilot_loaded = package.loaded["copilot"] ~= nil
+				if not copilot_loaded then
+					return { fg = status.hl.unknown }
+				end
+
+				local copilot = require("copilot.client")
+				local api = require("copilot.api")
+				if not copilot.buf_is_attached(vim.api.nvim_get_current_buf()) or copilot.is_disabled() then
+					return { fg = status.hl.disabled }
+				elseif api.status.data.status == "Warning" then
+					return { fg = status.hl.warning }
+				elseif vim.b.copilot_suggestion_auto_trigger then
+					return { fg = status.hl.sleep }
+				else
+					return { fg = status.hl.enabled }
+				end
+			end,
+		}
+
 		local LSPActive = {
 			condition = conditions.lsp_attached,
 			update = {'LspAttach', 'LspDetach'},
@@ -365,7 +423,7 @@ local M = {
 
 		local DefaultStatusline = {
 			ViMode, Space, FileNameBlock, Space, Git, Space, Diagnostics, Align,
-			LSPActive, Space, LSPMessages, Space, FileType, Space, Ruler
+			Copilot, Space, LSPActive, Space, LSPMessages, Space, FileType, Space, Ruler
 		}
 		local InactiveStatusline = {
 			condition = conditions.is_not_active,
