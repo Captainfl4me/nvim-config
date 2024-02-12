@@ -13,6 +13,7 @@ local M = {
 					loader = 'json'
 				}
 			},
+			"Hoffs/omnisharp-extended-lsp.nvim",
 		},
 	},
 	{
@@ -36,6 +37,7 @@ local M = {
 				"clangd",
 				"rust_analyzer",
 				"lua_ls",
+				"omnisharp"
 			}
 		},
 		config = function()
@@ -46,6 +48,12 @@ local M = {
 			  settings = {
 				['rust-analyzer'] = {},
 			  },
+			}
+			lspconfig.omnisharp.setup {
+				handlers = {
+					["textDocument/definition"] = require('omnisharp_extended').handler,
+				},
+				cmd = { "omnisharp", '--languageserver', '--hostPID', tostring(vim.fn.getpid()) },
 			}
 
 			vim.api.nvim_create_autocmd('LspAttach', {

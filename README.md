@@ -19,6 +19,8 @@ Now that NeoVim is installed now you will need to download the dependencies:
 - Install [Python](https://www.python.org/) and add it to Path. (Not from Microsoft Store !)
 - Install VS [build tools](https://visualstudio.microsoft.com/fr/visual-cpp-build-tools/)
 - Install [RipGrep](https://github.com/BurntSushi/ripgrep?tab=readme-ov-file#installation)
+- Install [Rust-Analyzer](https://rust-analyzer.github.io/manual.html#rustup)
+- Install [Omnisharp](https://github.com/OmniSharp/omnisharp-roslyn) and add it to Path.
 
 Then copy go to ~/AppData/local/ and run the following commands:
 
