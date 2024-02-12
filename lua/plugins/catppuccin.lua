@@ -1,7 +1,7 @@
 local M = {
 	"catppuccin/nvim",
-	enable = ColorScheme == "catppuccin",
-	lazy = not ColorScheme == "catppuccin",
+	lazy = not (ColorScheme == "catppuccin"),
+	name = "catppuccin",
 	priority = 1000,
 	opts = function()
 		return {

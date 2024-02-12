@@ -1,7 +1,6 @@
 local M = {
 	'rebelot/kanagawa.nvim',
-	enable = ColorScheme == "kanagawa",
-	lazy = not ColorScheme == "kanagawa",
+	lazy = not (ColorScheme == "kanagawa"),
 	priority = 1000,
 	config = function()
 		require('kanagawa').setup({

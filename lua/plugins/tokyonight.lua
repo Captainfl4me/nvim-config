@@ -1,7 +1,6 @@
 local M = {
 	"folke/tokyonight.nvim",
-	enable = ColorScheme == "tokyonight",
-	lazy = not ColorScheme == "tokyonight",
+	lazy = not (ColorScheme == "tokyonight"),
 	priority = 1000,
 	opts = function()
 		return {
