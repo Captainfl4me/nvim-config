@@ -32,15 +32,16 @@ local M = {
 			"neovim/nvim-lspconfig",
 			"folke/neodev.nvim",
 		},
-		opts = {
-			ensure_installed = {
-				"clangd",
-				"rust_analyzer",
-				"lua_ls",
-				"omnisharp"
-			}
-		},
 		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = { 
+					"clangd",
+					"rust_analyzer",
+					"lua_ls",
+					"omnisharp"
+				},
+			})
+
 			local lspconfig = require('lspconfig')
 			lspconfig.lua_ls.setup {}
 			lspconfig.clangd.setup {}
