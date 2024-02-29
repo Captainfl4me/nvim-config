@@ -23,6 +23,7 @@ local M = {
 			dashboard.button("e", "  New file", "<cmd>ene <CR>"),
 			dashboard.button( "f", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
 			dashboard.button("r", "  Recent files", "<cmd>Telescope oldfiles<CR>"),
+			dashboard.button("p", "  Projects", "<cmd>Telescope projects<CR>"),
 			dashboard.button( "c", "  Neovim Config", "<cmd>execute 'cd' stdpath('config')<CR> | <cmd>e $MYVIMRC<CR>"),
 			dashboard.button( "u", "  Update Plugins", "<cmd>Lazy update<CR> | <cmd>MasonUpdate<CR> | <cmd>TSUpdate<CR>"),
 			dashboard.button( "q", "󰛂  Quit NVIM", ":qa<CR>"),
