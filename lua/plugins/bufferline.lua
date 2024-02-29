@@ -11,6 +11,12 @@ local M = {
 					text = "File Explorer",
 					text_align = "center",
 					separator = true
+				},
+				{
+					filetype = "diffviewfiles",
+					text = "Git Diff",
+					text_align = "center",
+					separator = true
 				}
 			},
 			diagnostics = "nvim_lsp",
