@@ -6,10 +6,16 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smarttab = true
 vim.opt.autoindent = true
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamedplus" -- Share clipboard with System
 vim.opt.termguicolors = true
 
-vim.opt.updatetime = 300
+vim.opt.updatetime = 300 -- Update every 300ms
+
+-- Hybrid line numbers
+vim.wo.relativenumber = true
+vim.wo.number = true
+vim.wo.cursorline = true
+vim.opt.cursorlineopt = "number"
 
 
 -- Lazy config (package manager)
