@@ -6,7 +6,10 @@ local opts = {
 	ui = { border = "rounded" },
 	change_detection = {
 		notify = false,
-	}
+	},
+	git = {
+		timeout = 240, -- In seconds
+	},
 }
 
 require("lazy").setup("plugins", opts)
