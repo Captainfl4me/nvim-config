@@ -34,7 +34,7 @@ local M = {
 		},
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { 
+				ensure_installed = {
 					"clangd",
 					"rust_analyzer",
 					"lua_ls",
@@ -46,9 +46,9 @@ local M = {
 			lspconfig.lua_ls.setup {}
 			lspconfig.clangd.setup {}
 			lspconfig.rust_analyzer.setup {
-			  settings = {
-				['rust-analyzer'] = {},
-			  },
+				settings = {
+					['rust-analyzer'] = {},
+				},
 			}
 			lspconfig.omnisharp.setup {
 				handlers = {
@@ -58,29 +58,32 @@ local M = {
 			}
 
 			vim.api.nvim_create_autocmd('LspAttach', {
-			  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-			  callback = function(ev)
-				-- Enable completion triggered by <c-x><c-o>
-				vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+				group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+				callback = function(ev)
+					-- Enable completion triggered by <c-x><c-o>
+					vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-				-- Buffer local mappings.
-				-- See `:help vim.lsp.*` for documentation on any of the below functions
-				local opts = { buffer = ev.buf }
-				vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-				vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-				vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-				vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-				vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-				vim.keymap.set('n', '<leader>wl', function()
-				  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-				end, opts)
-				vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-				vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-				vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-				vim.keymap.set('n', '<leader>f', function()
-				  vim.lsp.buf.format { async = true }
-				end, opts)
-			  end,
+					-- Buffer local mappings.
+					-- See `:help vim.lsp.*` for documentation on any of the below functions
+					vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = ev.buf, desc = "Go to Declaration" })
+					vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = ev.buf, desc = "Hover info" })
+					vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "Signature help" })
+					vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder,
+						{ buffer = ev.buf, desc = "Add workspace folder" })
+					vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder,
+						{ buffer = ev.buf, desc = "Remove workspace folder" })
+					vim.keymap.set('n', '<leader>wl', function()
+						print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+					end, { buffer = ev.buf, desc = "List workspace folder" })
+					vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition,
+						{ buffer = ev.buf, desc = "Jump to type definition" })
+					vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename" })
+					vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action,
+						{ buffer = ev.buf, desc = "Show code action" })
+					vim.keymap.set('n', '<leader>f', function()
+						vim.lsp.buf.format { async = true }
+					end, { buffer = ev.buf, desc = "Go to Declaration" })
+				end,
 			})
 		end
 	},

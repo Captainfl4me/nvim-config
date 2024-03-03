@@ -5,7 +5,7 @@ local M = {
 		"ToggleTerm"
 	},
 	keys = {
-		{'<leader>t', '<Cmd>exe v:count1 . \"ToggleTerm\"<CR>', desc = "Open specific terminal" },
+		{ '<leader>t', '<Cmd>exe v:count1 . \"ToggleTerm\"<CR>', desc = "Open specific terminal" },
 	},
 	opts = {},
 }

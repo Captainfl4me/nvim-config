@@ -14,8 +14,8 @@ local M = {
 			"DiffviewFileHistory",
 		},
 		keys = {
-			{'<leader>ed', '<cmd>DiffviewOpen<cr>', desc = "Open Git Diff view"},
-			{'<leader>cd', '<cmd>DiffviewClose<cr>', desc = "Close Git Diff view"},
+			{ '<leader>ed', '<cmd>DiffviewOpen<cr>',  desc = "Open Git Diff view" },
+			{ '<leader>cd', '<cmd>DiffviewClose<cr>', desc = "Close Git Diff view" },
 		},
 	}
 }

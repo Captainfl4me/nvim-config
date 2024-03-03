@@ -90,19 +90,19 @@ local M = {
 					t = "T",
 				},
 				mode_colors = {
-					n = "red" ,
+					n = "red",
 					i = "green",
 					v = "cyan",
-					V =  "cyan",
-					["\22"] =  "cyan",
-					c =  "orange",
-					s =  "purple",
-					S =  "purple",
-					["\19"] =  "purple",
-					R =  "orange",
-					r =  "orange",
-					["!"] =  "red",
-					t =  "red",
+					V = "cyan",
+					["\22"] = "cyan",
+					c = "orange",
+					s = "purple",
+					S = "purple",
+					["\19"] = "purple",
+					R = "orange",
+					r = "orange",
+					["!"] = "red",
+					t = "red",
 				}
 			},
 			-- We can now access the value of mode() that, by now, would have been
@@ -113,7 +113,7 @@ local M = {
 			-- control the padding and make sure our string is always at least 2
 			-- characters long. Plus a nice Icon.
 			provider = function(self)
-				return " %2("..self.mode_names[self.mode].."%)"
+				return " %2(" .. self.mode_names[self.mode] .. "%)"
 			end,
 			-- Same goes for the highlight. Now the foreground will change according to the current mode.
 			hl = function(self)
@@ -143,7 +143,8 @@ local M = {
 			init = function(self)
 				local filename = self.filename
 				local extension = vim.fn.fnamemodify(filename, ":e")
-				self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+				self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(filename, extension,
+					{ default = true })
 			end,
 			provider = function(self)
 				return self.icon and (self.icon .. " ")
@@ -192,7 +193,7 @@ local M = {
 			hl = function()
 				if vim.bo.modified then
 					-- use `force` because we need to override the child's hl foreground
-					return { fg = "cyan", bold = true, force=true }
+					return { fg = "cyan", bold = true, force = true }
 				end
 			end,
 		}
@@ -200,7 +201,7 @@ local M = {
 			FileIcon,
 			utils.insert(FileNameModifer, FileName), -- a new table where FileName is a child of FileNameModifier
 			FileFlags,
-			{ provider = '%<'} -- this means that the statusline is cut here when there's not enough space
+			{ provider = '%<' }             -- this means that the statusline is cut here when there's not enough space
 		)
 
 		local FileType = {
@@ -214,14 +215,15 @@ local M = {
 			condition = conditions.is_git_repo,
 
 			init = function(self)
-				self.status_dict =  vim.b.gitsigns_status_dict
-				self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0
+				self.status_dict = vim.b.gitsigns_status_dict
+				self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or
+					self.status_dict.changed ~= 0
 			end,
 
 			hl = { fg = "orange" },
 
 
-			{   -- git branch name
+			{ -- git branch name
 				provider = function(self)
 					return " " .. self.status_dict.head
 				end,
@@ -376,7 +378,7 @@ local M = {
 
 		local LSPActive = {
 			condition = conditions.lsp_attached,
-			update = {'LspAttach', 'LspDetach'},
+			update    = { 'LspAttach', 'LspDetach' },
 
 			-- You can keep it simple,
 			-- provider = " [LSP]",
@@ -389,7 +391,7 @@ local M = {
 				end
 				return " [" .. table.concat(names, " ") .. "]"
 			end,
-			hl = { fg = "green", bold = true },
+			hl        = { fg = "green", bold = true },
 		}
 		local LSPMessages = {
 			provider = require("lsp-status").status(),
@@ -427,7 +429,10 @@ local M = {
 		}
 		local InactiveStatusline = {
 			condition = conditions.is_not_active,
-			FileType, Space, FileName, Align,
+			FileType,
+			Space,
+			FileName,
+			Align,
 		}
 		local SpecialStatusline = {
 			condition = function()
@@ -437,7 +442,9 @@ local M = {
 				})
 			end,
 
-			FileType, Space, Align,
+			FileType,
+			Space,
+			Align,
 		}
 		local TerminalStatusline = {
 			condition = function()
@@ -447,7 +454,11 @@ local M = {
 			hl = { bg = "dark_red" },
 
 			-- Quickly add a condition to the ViMode to only show it when buffer is active!
-			{ condition = conditions.is_active, ViMode, Space }, FileType, Space, TerminalName, Align,
+			{ condition = conditions.is_active, ViMode, Space },
+			FileType,
+			Space,
+			TerminalName,
+			Align,
 		}
 
 		local StatusLines = {
@@ -464,7 +475,10 @@ local M = {
 			-- think of it as a switch case with breaks to stop fallthrough.
 			fallthrough = false,
 
-			SpecialStatusline, TerminalStatusline, InactiveStatusline, DefaultStatusline,
+			SpecialStatusline,
+			TerminalStatusline,
+			InactiveStatusline,
+			DefaultStatusline,
 		}
 
 		require("heirline").setup({ statusline = StatusLines })

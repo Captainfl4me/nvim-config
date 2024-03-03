@@ -1,5 +1,5 @@
 local M = {
-    "nvim-treesitter/nvim-treesitter",
+	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = {
 		"TSBufDisable",
@@ -15,11 +15,11 @@ local M = {
 		"TSUninstall",
 		"TSUpdate",
 		"TSUpdateSync",
-	  },
-    build = function()
-        require("nvim-treesitter.install").update({ with_sync = true })()
-    end,
-	config = function ()
+	},
+	build = function()
+		require("nvim-treesitter.install").update({ with_sync = true })()
+	end,
+	config = function()
 		local configs = require("nvim-treesitter.configs")
 
 		configs.setup({
@@ -56,7 +56,7 @@ local M = {
 			ignore_install = {},
 			modules = {},
 		})
-    end
+	end
 }
 
 return M
