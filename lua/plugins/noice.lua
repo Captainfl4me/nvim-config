@@ -17,10 +17,13 @@ local M = {
 			{
 				filter = {
 					event = "msg_show",
-					kind = "",
-					find = "written",
+					any = {
+						{ find = "%d+L, %d+B" },
+						{ find = "; after #%d+" },
+						{ find = "; before #%d+" },
+					},
 				},
-				view = "mini"
+				view = "mini",
 			},
 		},
 	},
