@@ -38,7 +38,8 @@ local M = {
 					"clangd",
 					"rust_analyzer",
 					"lua_ls",
-					"omnisharp"
+					"omnisharp",
+					"pyright",
 				},
 			})
 
@@ -56,6 +57,7 @@ local M = {
 				},
 				cmd = { "omnisharp", '--languageserver', '--hostPID', tostring(vim.fn.getpid()) },
 			}
+			lspconfig.pyright.setup {}
 
 			vim.api.nvim_create_autocmd('LspAttach', {
 				group = vim.api.nvim_create_augroup('UserLspConfig', {}),

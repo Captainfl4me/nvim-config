@@ -46,9 +46,10 @@ local M = {
 					['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
 					-- C-b (back) C-f (forward) for snippet placeholder navigation.
 					['<C-Space>'] = cmp.mapping.complete(),
+					['<C-e>'] = cmp.mapping.abort(),
 					['<CR>'] = cmp.mapping.confirm {
 						behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
+						select = false,
 					},
 					['<Tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
