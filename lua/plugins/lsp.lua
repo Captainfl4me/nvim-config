@@ -40,24 +40,31 @@ local M = {
 					"lua_ls",
 					"omnisharp",
 					"pyright",
+					"ltex-ls",
 				},
 			})
 
-			local lspconfig = require('lspconfig')
-			lspconfig.lua_ls.setup {}
-			lspconfig.clangd.setup {}
-			lspconfig.rust_analyzer.setup {
-				settings = {
-					['rust-analyzer'] = {},
-				},
+			require("mason-lspconfig").setup_handlers {
+				function (server_name) -- default handler (optional)
+					require("lspconfig")[server_name].setup {}
+				end,
+
+				["rust_analyzer"] = function ()
+					require("lspconfig").rust_analyzer.setup {
+						settings = {
+							['rust-analyzer'] = {},
+						},
+					}
+				end,
+				["omnisharp"] = function()
+					require("lspconfig").omnisharp.setup {
+						handlers = {
+							["textDocument/definition"] = require('omnisharp_extended').handler,
+						},
+						cmd = { "omnisharp", '--languageserver', '--hostPID', tostring(vim.fn.getpid()) },
+					}
+				end,
 			}
-			lspconfig.omnisharp.setup {
-				handlers = {
-					["textDocument/definition"] = require('omnisharp_extended').handler,
-				},
-				cmd = { "omnisharp", '--languageserver', '--hostPID', tostring(vim.fn.getpid()) },
-			}
-			lspconfig.pyright.setup {}
 
 			vim.api.nvim_create_autocmd('LspAttach', {
 				group = vim.api.nvim_create_augroup('UserLspConfig', {}),

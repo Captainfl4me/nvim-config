@@ -17,6 +17,12 @@ vim.wo.number = true
 vim.wo.cursorline = true
 vim.opt.cursorlineopt = "number"
 
+-- Custom filetypes
+vim.filetype.add({
+	pattern = {
+		[".*%.slint"] = "slint",
+	}
+})
 
 -- Lazy config (package manager)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
