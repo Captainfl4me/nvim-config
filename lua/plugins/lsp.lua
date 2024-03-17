@@ -40,7 +40,7 @@ local M = {
 					"lua_ls",
 					"omnisharp",
 					"pyright",
-					"ltex-ls",
+					"ltex",
 				},
 			})
 
