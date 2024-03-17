@@ -2,11 +2,9 @@ local M = {
 	{
 		'hrsh7th/nvim-cmp',
 		dependencies = {
-			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
-			"L3MON4D3/LuaSnip",
 			{
 				"zbirenbaum/copilot-cmp",
 				dependencies = {
@@ -25,9 +23,6 @@ local M = {
 		},
 		event = "InsertEnter",
 		opts = function()
-			-- luasnip setup
-			local luasnip = require 'luasnip'
-
 			-- nvim-cmp setup
 			local cmp = require 'cmp'
 			local cmp_autopairs = require('nvim-autopairs.completion.cmp')
@@ -36,11 +31,7 @@ local M = {
 				cmp_autopairs.on_confirm_done()
 			)
 			return {
-				snippet = {
-					expand = function(args)
-						luasnip.lsp_expand(args.body)
-					end,
-				},
+				snippet = { },
 				mapping = cmp.mapping.preset.insert({
 					['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
 					['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
@@ -54,8 +45,6 @@ local M = {
 					['<Tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
 						else
 							fallback()
 						end
@@ -63,8 +52,6 @@ local M = {
 					['<S-Tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
 						else
 							fallback()
 						end
@@ -76,7 +63,6 @@ local M = {
 				},
 				sources = cmp.config.sources {
 					{ name = "nvim_lsp", priority = 1000 },
-					{ name = "luasnip",  priority = 750 },
 					{ name = "buffer",   priority = 500 },
 					{ name = "path",     priority = 250 },
 					{ name = "copilot",  priority = 100 },
