@@ -45,14 +45,18 @@ local M = {
 			})
 
 			require("mason-lspconfig").setup_handlers {
-				function (server_name) -- default handler (optional)
+				function(server_name) -- default handler (optional)
 					require("lspconfig")[server_name].setup {}
 				end,
 
-				["rust_analyzer"] = function ()
+				["rust_analyzer"] = function()
 					require("lspconfig").rust_analyzer.setup {
 						settings = {
-							['rust-analyzer'] = {},
+							['rust-analyzer'] = {
+								checkOnSave = {
+									command = "clippy",
+								},
+							},
 						},
 					}
 				end,
