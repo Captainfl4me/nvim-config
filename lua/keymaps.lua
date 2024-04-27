@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
 vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
+vim.keymap.set('i', '<C-c>', '<esc>')
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
