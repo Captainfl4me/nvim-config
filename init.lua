@@ -21,6 +21,7 @@ vim.opt.cursorlineopt = "number"
 vim.filetype.add({
 	pattern = {
 		[".*%.slint"] = "slint",
+		[".*%.frag"] = "glsl",
 	}
 })
 

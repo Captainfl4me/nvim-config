@@ -1,7 +1,10 @@
 local M = {
 	'nvim-telescope/telescope.nvim',
-	commit = 'dc7f25c', --tag = '0.1.5',
-	dependencies = { 'nvim-lua/plenary.nvim' },
+	-- commit = 'dc7f25c', --tag = '0.1.5',
+	dependencies = { 
+		'nvim-lua/plenary.nvim',
+		'nvim-telescope/telescope-ui-select.nvim'
+	},
 	cmd = {
 		"Telescope"
 	},
@@ -28,7 +31,7 @@ local M = {
 		},
 		{
 			'<leader>d',
-			function() require('telescope.builtin').diagnostics({ line_width = 'full' }) end,
+			function() require('telescope.builtin').diagnostics({ line_width = 'full', severity_bound = 0 }) end,
 			desc = "Telescope display diagnostic"
 		},
 		{
@@ -49,7 +52,10 @@ local M = {
 	},
 	opts = {
 		defaults = { wrap_results = true }
-	}
+	},
+	config = function ()
+		require("telescope").load_extension("ui-select")
+	end
 }
 
 return M
