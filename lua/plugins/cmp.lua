@@ -5,19 +5,6 @@ local M = {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
-			{
-				"zbirenbaum/copilot-cmp",
-				dependencies = {
-					"zbirenbaum/copilot.lua",
-					cmd = "Copilot",
-					event = "InsertEnter",
-					opts = {
-						suggestion = { enabled = false },
-						panel = { enabled = false },
-					},
-				},
-				opts = {},
-			},
 			"windwp/nvim-autopairs",
 
 		},
@@ -65,7 +52,6 @@ local M = {
 					{ name = "nvim_lsp", priority = 1000 },
 					{ name = "buffer",   priority = 500 },
 					{ name = "path",     priority = 250 },
-					{ name = "copilot",  priority = 100 },
 				},
 			}
 		end,
