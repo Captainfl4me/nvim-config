@@ -1,3 +1,17 @@
+function get_project_rustanalyzer_settings()
+	local handle = io.open(vim.fn.resolve(vim.fn.getcwd() .. '/./.rust-analyzer.json'))
+	if not handle then
+		return {}
+	end
+	local out = handle:read("*a")
+	handle:close()
+	local config = vim.json.decode(out)
+	if type(config) == "table" then
+		return config
+	end
+	return {}
+end
+
 local M = {
 	{
 		"neovim/nvim-lspconfig",
@@ -52,12 +66,28 @@ local M = {
 				["rust_analyzer"] = function()
 					require("lspconfig").rust_analyzer.setup {
 						settings = {
-							['rust-analyzer'] = {
-								checkOnSave = {
-									command = "clippy",
+							['rust-analyzer'] = vim.tbl_deep_extend(
+								"force",
+								{
+									checkOnSave = {
+										command = "clippy",
+										allTargets = false,
+									},
 								},
-							},
+								get_project_rustanalyzer_settings(),
+								{
+									-- No overridable
+								}
+							)
 						},
+					}
+				end,
+				["clangd"] = function()
+					require("lsp-config").clangd.setup {
+						cmd = {
+							"clangd",
+							"--fallback-style=webkit" -- Force 4 tabs indent
+						}
 					}
 				end,
 				["omnisharp"] = function()

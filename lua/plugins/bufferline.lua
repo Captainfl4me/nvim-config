@@ -1,7 +1,7 @@
 local M = {
 	'akinsho/bufferline.nvim',
 	version = "*",
-	dependencies = 'nvim-tree/nvim-web-devicons',
+	dependencies = {'nvim-tree/nvim-web-devicons', 'echasnovski/mini.icons'},
 	lazy = false,
 	opts = {
 		options = {
