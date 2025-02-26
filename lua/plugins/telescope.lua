@@ -1,9 +1,10 @@
 local M = {
 	'nvim-telescope/telescope.nvim',
 	-- commit = 'dc7f25c', --tag = '0.1.5',
-	dependencies = { 
+	dependencies = {
 		'nvim-lua/plenary.nvim',
-		'nvim-telescope/telescope-ui-select.nvim'
+		'nvim-telescope/telescope-ui-select.nvim',
+		"aznhe21/actions-preview.nvim",
 	},
 	cmd = {
 		"Telescope"
@@ -53,7 +54,7 @@ local M = {
 	opts = {
 		defaults = { wrap_results = true }
 	},
-	config = function ()
+	config = function()
 		require("telescope").load_extension("ui-select")
 	end
 }

@@ -8,6 +8,7 @@ vim.opt.smarttab = true
 vim.opt.autoindent = true
 vim.opt.clipboard = "unnamedplus" -- Share clipboard with System
 vim.opt.termguicolors = true
+vim.g.mapleader = " "
 
 vim.opt.updatetime = 300 -- Update every 300ms
 
@@ -47,5 +48,5 @@ package.path = package.path .. ';' .. script_dir .. '?.lua'
 ColorScheme = "tokyonight"
 IsTransparent = false
 
-require("lua.keymaps")
 require("lua.lazy")
+require("lua.keymaps")
